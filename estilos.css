@@ -1,0 +1,256 @@
+/* --- VARIABLES DEL DOSSIER UNIVERSITARIO --- */
+:root {
+    --bg-papel: #F9F8F4;        /* Tono pergamino claro */
+    --tinta-negra: #1E1E1E;     /* Texto principal */
+    --tinta-gris: #5A5A5A;      /* Textos secundarios */
+    --borde-oficial: #D1CDBC;   /* Líneas divisorias */
+    --sello-uabc: #00723F;      /* Verde institucional UABC (opcional, para toques) */
+    --sello-alerta: #8B1E1E;    /* Rojo oscuro de expediente */
+    --acento-fondo: #EAE6D7;    /* Cajas destacadas */
+    
+    --fuente-titulo: 'Georgia', 'Times New Roman', serif;
+    --fuente-texto: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --fuente-datos: 'Courier New', Courier, monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.dossier-layout {
+    background-color: #EAEAE8; /* Fondo exterior */
+    color: var(--tinta-negra);
+    font-family: var(--fuente-texto);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+/* El documento central tipo hoja */
+.documento-central {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--bg-papel);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 3rem 4rem;
+    position: relative;
+    border: 1px solid #CCC;
+}
+
+/* --- CABECERA --- */
+.cabecera-oficial {
+    text-align: center;
+    border-bottom: 3px solid var(--tinta-negra);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.sello-confidencial {
+    font-family: var(--fuente-datos);
+    color: var(--sello-alerta);
+    border: 2px solid var(--sello-alerta);
+    display: inline-block;
+    padding: 5px 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+}
+
+.cabecera-oficial h2 { font-size: 1.2rem; letter-spacing: 1px; color: var(--tinta-gris); }
+.cabecera-oficial h3 { font-size: 1rem; font-weight: normal; margin-bottom: 1rem; }
+.cabecera-oficial h1 { 
+    font-family: var(--fuente-titulo); 
+    font-size: 2.2rem; 
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.acciones-rapidas {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* --- FICHA TÉCNICA (Grid 2 columnas) --- */
+.ficha-tecnica {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    background-color: var(--acento-fondo);
+    padding: 1.5rem;
+    border: 1px solid var(--borde-oficial);
+    margin-bottom: 3rem;
+    font-family: var(--fuente-datos);
+    font-size: 0.9rem;
+}
+
+.dato-fila {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted var(--tinta-gris);
+    padding: 0.3rem 0;
+}
+
+.dato-fila .etiqueta { font-weight: bold; color: var(--tinta-gris); }
+.dato-fila .valor { text-align: right; font-weight: bold; }
+
+/* --- MARCADORES Y TEXTOS --- */
+.marcador-bloque {
+    display: block;
+    font-family: var(--fuente-datos);
+    font-size: 0.8rem;
+    color: var(--tinta-gris);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.bloque-texto { margin-bottom: 3rem; }
+.abstracto p { font-size: 1.1rem; text-align: justify; }
+
+/* --- LÍNEA DE TIEMPO (Unidades) --- */
+.bloque-unidad { margin-bottom: 4rem; }
+.titulo-unidad { margin-bottom: 2rem; border-bottom: 1px solid var(--borde-oficial); padding-bottom: 1rem; }
+.titulo-unidad h2 { font-family: var(--fuente-titulo); font-size: 1.8rem; margin-bottom: 0.5rem; }
+.titulo-unidad p { color: var(--tinta-gris); }
+
+.linea-tiempo {
+    border-left: 2px solid var(--tinta-negra);
+    padding-left: 2rem;
+    margin-left: 1rem;
+}
+
+.evento {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+/* El "punto" en la línea de tiempo */
+.evento::before {
+    content: '';
+    position: absolute;
+    left: -2.45rem;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--bg-papel);
+    border: 2px solid var(--tinta-negra);
+    border-radius: 50%;
+}
+
+.evento-fecha {
+    font-family: var(--fuente-datos);
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--sello-alerta);
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.evento-fecha span {
+    background-color: var(--tinta-negra);
+    color: #FFF;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+}
+
+.evento-info h4 { font-family: var(--fuente-titulo); font-size: 1.2rem; margin-bottom: 0.3rem; }
+.evento-info p { font-size: 0.95rem; margin-bottom: 0.8rem; color: #444; }
+
+/* --- BOTONES Y ENLACES --- */
+.btn-enlace, .btn-sello {
+    display: inline-block;
+    font-family: var(--fuente-datos);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 5px 12px;
+    border: 1px solid var(--tinta-negra);
+    color: var(--tinta-negra);
+    transition: all 0.2s;
+}
+
+.btn-enlace:hover { background-color: var(--tinta-negra); color: #FFF; }
+.btn-enlace.alterno { border-style: dashed; color: var(--tinta-gris); }
+.btn-enlace.alterno:hover { border-style: solid; background-color: transparent; color: var(--tinta-negra); }
+
+.grupo-botones { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.btn-sello { border-color: var(--sello-alerta); color: var(--sello-alerta); }
+.btn-sello:hover { background-color: var(--sello-alerta); color: #FFF; }
+
+/* --- PROYECTO (Grid 3 columnas) --- */
+.bloque-especial { margin-bottom: 4rem; padding: 2rem; background-color: var(--acento-fondo); border: 1px solid var(--borde-oficial); }
+.bloque-especial h2 { font-family: var(--fuente-titulo); font-size: 1.8rem; }
+.bloque-especial .subtitulo { margin-bottom: 2rem; font-style: italic; }
+
+.grid-proyecto {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.tarjeta-doc {
+    background-color: var(--bg-papel);
+    padding: 1.5rem;
+    border: 1px solid var(--borde-oficial);
+    border-top: 4px solid var(--tinta-negra);
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-doc .año { font-family: var(--fuente-datos); font-size: 0.8rem; color: var(--sello-alerta); margin-bottom: 0.5rem; }
+.tarjeta-doc h4 { font-family: var(--fuente-titulo); margin-bottom: 0.5rem; }
+.tarjeta-doc p { font-size: 0.9rem; flex-grow: 1; margin-bottom: 1rem; }
+
+/* --- ENFOQUE (Grid 2x2) --- */
+.fondo-oscuro { background-color: var(--tinta-negra); color: var(--bg-papel); border: none; }
+.fondo-oscuro h2 { color: #FFF; }
+.fondo-oscuro .subtitulo { color: #AAA; }
+
+.grid-enfoque {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.enfoque-item h4 { font-family: var(--fuente-datos); color: var(--borde-oficial); border-bottom: 1px solid #444; padding-bottom: 0.3rem; margin-bottom: 0.5rem; }
+.enfoque-item p { font-size: 0.9rem; color: #DDD; }
+
+/* --- ACORDEÓN BIBLIOGRAFÍA --- */
+.acordeon-biblio { border: 1px solid var(--tinta-negra); margin-top: 1.5rem; }
+.acordeon-biblio summary {
+    padding: 1rem;
+    background-color: var(--tinta-negra);
+    color: #FFF;
+    font-family: var(--fuente-titulo);
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.acordeon-biblio summary::-webkit-details-marker { display: none; }
+.badge { font-family: var(--fuente-datos); font-size: 0.8rem; background-color: #FFF; color: var(--tinta-negra); padding: 2px 8px; border-radius: 12px; }
+.contenido-biblio { padding: 1.5rem 2rem; background-color: var(--acento-fondo); }
+.contenido-biblio ul { padding-left: 1rem; }
+.contenido-biblio li { margin-bottom: 0.5rem; font-size: 0.9rem; }
+
+/* --- PIE DE PÁGINA --- */
+.pie-dossier { text-align: center; margin-top: 4rem; border-top: 2px solid var(--tinta-negra); padding-top: 1rem; font-family: var(--fuente-datos); font-size: 0.8rem; color: var(--tinta-gris); }
+
+/* --- RESPONSIVIDAD --- */
+@media (max-width: 768px) {
+    .documento-central { padding: 2rem 1.5rem; }
+    .ficha-tecnica, .grid-proyecto, .grid-enfoque { grid-template-columns: 1fr; }
+    .linea-tiempo { margin-left: 0; padding-left: 1rem; }
+    .evento::before { left: -1.45rem; }
+    .evento-fecha { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+    .acciones-rapidas { flex-direction: column; }
+}
